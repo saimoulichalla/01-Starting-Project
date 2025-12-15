@@ -1,5 +1,12 @@
 name: Events Demo 1
-on: ...
+on:
+  pull-request:
+    types: opened
+    #We can also write as below as a list or as above [opened, closed]
+    #types:
+    #  - opened
+    #  - closed
+  workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest
