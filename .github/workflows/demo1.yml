@@ -8,7 +8,7 @@ on:
     #  - closed
     branches:
       - master
-      - 'dev-*'
+      - 'dev-*' #branch starting with dev- followed by characters without /
   workflow_dispatch:
 jobs:
   deploy:
