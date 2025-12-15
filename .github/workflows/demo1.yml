@@ -1,6 +1,6 @@
 name: Events Demo 1
 on:
-  pull-request:
+  pull_request:
     types: opened
     #We can also write as below as a list or as above [opened, closed]
     #types:
