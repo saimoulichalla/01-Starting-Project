@@ -1,0 +1,29 @@
+name: Artifact workflow
+on:
+  push:
+    branches:
+      - master
+      - dev
+jobs:
+  Buildjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Getting the code
+        uses: actions/checkout@v6
+      - name: Install the dependencies
+        run: npm ci
+      - name: build the code
+        run: npm run build
+      - name: Upload the artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-files
+          path: dist
+  Deployjob:
+    needs: Buildjob
+    runs-on: ubuntu-latest
+    steps:
+      - name: downloading the artifacts
+        uses: actions/download-artifact@v4
+      - name: Deploy
+        run: echo "Deploying.."
