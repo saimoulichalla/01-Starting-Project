@@ -29,6 +29,8 @@ jobs:
           name: build-files
           path: dist
       - name: Display the files
-        run: ls
+        run: |
+          ls
+          ls -R dist
       - name: Deploy
         run: echo "Deploying.."
