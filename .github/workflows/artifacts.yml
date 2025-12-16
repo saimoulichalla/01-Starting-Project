@@ -19,11 +19,4 @@ jobs:
         with:
           name: build-files
           path: dist
-  Deployjob:
-    needs: Buildjob
-    runs-on: ubuntu-latest
-    steps:
-      - name: downloading the artifacts
-        uses: actions/download-artifact@v4
-      - name: Deploy
-        run: echo "Deploying.."
+  
