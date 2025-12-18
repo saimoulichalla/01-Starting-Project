@@ -20,7 +20,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: depens-node-modules-${{hashFiles('**/.package-lock.json')}}
+          key: depens-node-modules-${{hashFiles('**/package-lock.json')}}
       - name: Install the dependencies
         run: npm ci
       - name: build the code
@@ -44,7 +44,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: depens-node-modules-${{hashFiles('**/.package-lock.json')}}
+          key: depens-node-modules-${{hashFiles('**/package-lock.json')}}
       - name: Install the dependencies
         run: npm ci
       - name: downloading the artifacts
