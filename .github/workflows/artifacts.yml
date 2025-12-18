@@ -7,9 +7,20 @@ on:
 jobs:
   Buildjob:
     runs-on: ubuntu-latest
+    # ::JOB OUTPUTS :: we can place the step outputs into job outputs here or we can directly access it
+    # in another job directly 
+    outputs:
+      script-file: ${{steps.js-scripts.outputs.script-file}}
+
     steps:
       - name: Getting the code
         uses: actions/checkout@v6
+      #Cache dependencies
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: depens-node-modules-${{hashFiles('**/.package-lock.json')}}
       - name: Install the dependencies
         run: npm ci
       - name: build the code
@@ -19,10 +30,23 @@ jobs:
         with:
           name: build-files
           path: dist
+      #step outputs
+      - name: Output the JS files
+        id: js-scripts
+        run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
   Deployjob:
     needs: Buildjob
     runs-on: ubuntu-latest
     steps:
+      - name: Get the code
+        uses: actions/checkout@v6
+      - name: Cache the dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: depens-node-modules-${{hashFiles('**/.package-lock.json')}}
+      - name: Install the dependencies
+        uses: actions/setup-node@v6
       - name: downloading the artifacts
         uses: actions/download-artifact@v4
         with:
@@ -32,5 +56,7 @@ jobs:
         run: |
           ls
           ls -R dist
+      - name: Accessing buildjob outputs
+        run: echo "${{needs.Buildjob.outputs.script-file}}"
       - name: Deploy
         run: echo "Deploying.."
