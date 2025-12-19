@@ -15,14 +15,20 @@ jobs:
     steps:
       - name: Getting the code
         uses: actions/checkout@v6
+      - name: Before caching, cache location
+        run: npm config get cache
       #Cache dependencies
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
           path: ~/.npm
           key: depens-node-modules-${{hashFiles('**/package-lock.json')}}
+      - name: While caching, cache location
+        run: npm config get cache
       - name: Install the dependencies
         run: npm ci
+      - name: after npm install, cache location
+        run: npm config get cache
       - name: build the code
         run: npm run build
       - name: Upload the artifacts
