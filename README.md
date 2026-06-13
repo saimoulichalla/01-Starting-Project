@@ -4,18 +4,6 @@
 
 ---
 
-## 🧑‍💻 About Me
-
-I'm a **DevOps Engineer** with **3.5+ years** of hands-on experience designing and automating cloud infrastructure, CI/CD pipelines, and container orchestration at scale. Currently at **DXC Technology**, driving reliability and delivery velocity for Hewlett Packard Enterprise's cloud ecosystem.
-
-- 🔭 I build and maintain **production-grade AWS infrastructure** using Terraform & CloudFormation
-- ⚡ I live in the terminal — **Bash/Python scripts, Kubernetes clusters, and Helm charts** are my daily playground
-- 📈 Obsessed with **observability** — Prometheus, Grafana, and zero-downtime deployments
-- 🏆 Certified in **AZ-900** and **GitHub Actions (GH-200)**
-- 📍 Based in **Hyderabad, India** — building, shipping, and automating
-
----
-
 ## 🚀 Project Overview
 
 This project demonstrates how to integrate a production-style CI/CD pipeline into a modern React application using GitHub Actions. The pipeline automatically runs ESLint checks, Vitest unit tests, and a Vite production build on every code change — ensuring code quality and build integrity before any merge.
